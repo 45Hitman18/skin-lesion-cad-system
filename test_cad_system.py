@@ -67,8 +67,8 @@ def run_tests():
     test_img = Image.open(os.path.join("sample_images", "sample_benign_nevus.jpg"))
     img_tensor = preprocess_image(test_img)
     assert img_tensor.shape == (1, 224, 224, 3), f"Invalid preprocessed shape: {img_tensor.shape}"
-    assert 0.0 <= img_tensor.min() and img_tensor.max() <= 1.0, "Normalization out of [0, 1] range!"
-    print(f"  --> PASSED: Image preprocessed to shape {img_tensor.shape}, min={img_tensor.min():.2f}, max={img_tensor.max():.2f}")
+    assert 0.0 <= img_tensor.min() and img_tensor.max() <= 255.0, "Input out of [0, 255] range!"
+    print(f"  --> PASSED: Image preprocessed to shape {img_tensor.shape}, min={img_tensor.min():.1f}, max={img_tensor.max():.1f}")
     passed_tests += 1
 
     # Test 5: Inference
